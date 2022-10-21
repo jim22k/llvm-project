@@ -1,0 +1,39 @@
+package:
+  name: mlir-build-python-bindings
+  version: 0.0.1
+
+source:
+  path: ../
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - cmake
+    - ninja
+    - numpy
+    - pyyaml
+    - pybind11>=2.8.0
+    - python
+    - zlib
+    - zstd
+    - ncurses
+  run:
+    - zstd
+    - pyyaml
+    - python
+    - numpy
+
+outputs:
+  - name: mlir-bindings
+    script: move_files.sh
+    requirements:
+      build:
+        - numpy {{ numpy }}
+        - python {{ python }}
+      run:
+        - pyyaml
+        - zstd
+        - python x.x
+        - numpy x.x
